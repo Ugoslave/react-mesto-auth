@@ -1,0 +1,19 @@
+.element__remove-button {
+  margin: 0;
+  background-color: transparent;
+  max-width: 18px;
+  max-height: 19px;
+  border: 0;
+  padding: 0;
+  outline: none;
+  transition: opacity .7s ease;
+  position: absolute;
+  top: 18px;
+  right: 15px;
+  z-index: 1;
+}
+
+.element__remove-button:hover {
+  opacity: .6;
+  cursor: pointer;
+}

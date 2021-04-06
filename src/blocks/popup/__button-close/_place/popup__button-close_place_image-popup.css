@@ -1,0 +1,15 @@
+.popup__button-close_place_image-popup {
+  margin: 0;
+}
+
+.popup__button-close_place_image-popup:hover {
+  opacity: .6;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .popup__button-close_place_image-popup {
+    align-self: flex-start;
+    margin: 0;
+  }
+}

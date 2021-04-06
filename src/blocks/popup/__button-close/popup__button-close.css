@@ -1,0 +1,23 @@
+.popup__button-close {
+  margin: 35px 0 0px 5px;
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  outline: none;
+  align-self: flex-start;
+  transition: opacity .7s ease;
+}
+
+.popup__button-close:hover {
+  opacity: .6;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .popup__button-close {
+    align-self: flex-end;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-top: 20px;
+  }
+}

@@ -1,0 +1,7 @@
+.popup__button-save_state_invalid {
+  opacity: .2;
+}
+
+.popup__button-save_state_invalid:hover {
+  opacity: .2;
+}

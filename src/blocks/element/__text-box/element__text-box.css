@@ -1,0 +1,10 @@
+.element__text-box {
+  margin: 0;
+  max-width: 100%;
+  background-color: #fff;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0 0 10px 10px;
+}

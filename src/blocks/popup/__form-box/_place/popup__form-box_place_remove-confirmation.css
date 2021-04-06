@@ -1,0 +1,10 @@
+.popup__form-box_place_remove-confirmation {
+  margin-top: 0;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .popup__form-box_place_remove-confirmation {
+    min-width: 240px;
+    margin-bottom: 0px;
+  }
+}

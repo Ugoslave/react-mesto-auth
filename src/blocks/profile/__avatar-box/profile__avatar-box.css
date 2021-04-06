@@ -1,0 +1,29 @@
+.profile__avatar-box {
+  max-width: 120px;
+  max-height: 120px;
+  border-radius: 120px;
+  position: relative;
+  border: solid 1px #000;
+}
+
+.profile__avatar-box::before {
+  content: '';
+  width: 100%;
+  min-height: 120px;
+  background-color: #000;
+  opacity: 0;
+  position: absolute;
+  z-index: 1;
+  border-radius: 120px;
+  border: solid 1px #000;
+  transition: opacity .7s ease;
+}
+
+.profile__avatar-box:hover::before {
+  background-image: url(../../../images/profile-avatar-hover.png);
+  background-position: center;
+  background-size: auto;
+  background-repeat: no-repeat;
+  opacity: .8;
+  cursor: pointer;
+}

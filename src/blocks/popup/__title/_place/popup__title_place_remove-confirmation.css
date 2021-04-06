@@ -1,0 +1,11 @@
+.popup__title_place_remove-confirmation {
+  padding: 30px 87px 0px 36px;
+  margin-bottom: 0px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .popup__title_place_remove-confirmation {
+    padding-bottom: 0;
+    margin-bottom: 30px;
+  }
+}
