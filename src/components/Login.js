@@ -1,8 +1,8 @@
-function Login(props) {
+function Login({title, name, buttonText}) {
   return (
     <div className="form-container">
-      <h2 className="form-container__title">{props.title}</h2>
-      <form name={props.name} className="form" noValidate>
+      <h2 className="form-container__title">{title}</h2>
+      <form name={name} className="form" noValidate>
         <input
           required
           type="email"
@@ -18,15 +18,14 @@ function Login(props) {
           placeholder="Пароль"
           minLength="6"
           maxLength="12"
-          className="form__input-error"
+          className="form__input"
         />
         <span className="form__input-error" />
 
         <button type="submit" className="form__button">
-          {props.buttonText}
+          {buttonText}
         </button>
       </form>
-      <p className="form-container__text">Уже зарегистрированы? <a className="form-container__link">Войти</a></p>
     </div>
   );
 }

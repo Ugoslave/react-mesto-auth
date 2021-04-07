@@ -6,7 +6,7 @@ import ImagePopup from "./ImagePopup";
 import React from "react";
 import api from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Login from './Login';
 import Register from './Register';
 import EditProfilePopup from "./EditProfilePopup";
@@ -154,12 +154,17 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <Header />
-          <Route path = "/sign-up">
-            <Login />
+        <Switch>
+
+          <Route exact path='/sign-in'>
+            <Login title = "Вход" name = "login" buttonText = "Войти"/>
           </Route>
-          <Route path = "/sign-in">
+
+          <Route exact path='/sign-up'>
             <Register />
           </Route>
+
+        <Route exact path='/'>
         <Main
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
@@ -169,7 +174,10 @@ function App() {
           onCardLike={handleCardLike}
           onCardDelete={handleCardDelete}
         />
+        
         <Footer />
+        </Route>
+        </Switch>
       </div>
       <EditProfilePopup
         isOpen={isEditProfilePopupOpen}
@@ -192,7 +200,8 @@ function App() {
         title="Вы уверены?"
         buttonText="Да"
       />
-    </CurrentUserContext.Provider>
+        </CurrentUserContext.Provider>
+      
   );
 }
 
