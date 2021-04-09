@@ -16,6 +16,7 @@ import avatarLoader from "../images/profile-avatar-loader.gif";
 import successImage from '../images/register-popup-success.svg';
 import failImage from '../images/register-popup-fail.svg';
 import InfoTooltip from './InfoTooltip';
+import ProtectedRoute from './ProtectedRoute';
 
 function App() {
 
@@ -168,8 +169,9 @@ function App() {
             <Register />
           </Route>
 
-        <Route exact path='/'>
-        <Main
+        <ProtectedRoute 
+          path='/'
+          component = {Main}
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
           onEditAvatar={handleEditAvatarClick}
@@ -180,7 +182,7 @@ function App() {
         />
         
         <Footer />
-        </Route>
+        
         </Switch>
       </div>
       <EditProfilePopup
@@ -205,7 +207,7 @@ function App() {
         buttonText="Да"
       />
         </CurrentUserContext.Provider>
-      
+    
   );
 }
 
