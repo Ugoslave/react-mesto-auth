@@ -13,8 +13,12 @@ import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
 import avatarLoader from "../images/profile-avatar-loader.gif";
+import successImage from '../images/register-popup-success.svg';
+import failImage from '../images/register-popup-fail.svg';
+import InfoTooltip from './InfoTooltip';
 
 function App() {
+
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);

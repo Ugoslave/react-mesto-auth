@@ -37,9 +37,11 @@
 @import url('./blocks/popup/popup.css');
 @import url('./blocks/popup/_active/popup_active.css');
 @import url('./blocks/popup/_place/popup_place_image-popup.css');
+@import url('./blocks/popup/_place/popup_place_register-popup.css');
 @import url('./blocks/popup/__container/popup__container.css');
 @import url('./blocks/popup/__container/_place/popup__container_place_add-element.css');
 @import url('./blocks/popup/__container/_place/popup__container_place_image-popup.css');
+@import url('./blocks/popup/__container/_place/popup__container_place_register-popup.css');
 @import url('./blocks/popup/__button-close/popup__button-close.css');
 @import url('./blocks/popup/__button-close/_place/popup__button-close_place_add-element.css');
 @import url('./blocks/popup/__button-close/_place/popup__button-close_place_image-popup.css');
@@ -47,8 +49,11 @@
 @import url('./blocks/popup/__form-box/popup__form-box.css');
 @import url('./blocks/popup/__form-box/_place/popup__form-box_place_add-element.css');
 @import url('./blocks/popup/__content-box/popup__content-box.css');
+@import url('./blocks/popup/__content-box/_place/popup__content-box_place_register-popup.css');
 @import url('./blocks/popup/__image/popup__image.css');
+@import url('./blocks/popup/__image/_place/popup__image_place_register-popup.css');
 @import url('./blocks/popup/__caption/popup__caption.css');
+@import url('./blocks/popup/__caption/_place/popup__caption_place_register-popup.css');
 @import url('./blocks/popup/__title/popup__title.css');
 @import url('./blocks/popup/__title/_place/popup__title_place_add-element.css');
 @import url('./blocks/popup/__form/popup__form.css');
