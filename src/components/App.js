@@ -30,6 +30,9 @@ function App() {
     avatar: `${avatarLoader}`
   });
   const [cards, setCards] = React.useState([]);
+  const [loggedIn, setLoggedIn] = React.useState(false);
+
+  
 
   React.useEffect(() => {
     api
@@ -162,7 +165,7 @@ function App() {
         <Switch>
 
           <Route exact path='/sign-in'>
-            <Login title = "Вход" name = "login" buttonText = "Войти"/>
+            <Login />
           </Route>
 
           <Route exact path='/sign-up'>
@@ -170,7 +173,8 @@ function App() {
           </Route>
 
         <ProtectedRoute 
-          path='/'
+          path='/' 
+          loggedIn = {loggedIn} 
           component = {Main}
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
@@ -182,7 +186,7 @@ function App() {
         />
         
         <Footer />
-        
+
         </Switch>
       </div>
       <EditProfilePopup
