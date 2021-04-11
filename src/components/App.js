@@ -191,21 +191,25 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
-        <Header />
+        
         <Switch>
 
           <Route exact path='/sign-in'>
+            <Header />
             <Login onLogin = {handleLogin} />
           </Route>
 
           <Route exact path='/sign-up'>
+            <Header />
             <Register onRegister ={handleInfoTooltipOpen} />
           </Route>
 
         <ProtectedRoute 
           path='/' 
           loggedIn = {loggedIn} 
-          component = {Main}
+          component ={Main}
+          header = {Header}
+          footer = {Footer}
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
           onEditAvatar={handleEditAvatarClick}
@@ -214,8 +218,6 @@ function App() {
           onCardLike={handleCardLike}
           onCardDelete={handleCardDelete}
         />
-        
-        <Footer />
 
         </Switch>
       </div>

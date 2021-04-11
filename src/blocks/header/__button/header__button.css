@@ -1,0 +1,9 @@
+.header__button {
+  margin-top: 5px;
+  font-family: 'Inter', 'Arial', sans-serif;
+  color: white;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: right;
+}
