@@ -6,53 +6,54 @@ import ImagePopup from "./ImagePopup";
 import React from "react";
 import api from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
-import { Route, Switch, useHistory } from 'react-router-dom';
-import Login from './Login';
-import Register from './Register';
+import { Route, Switch, useHistory } from "react-router-dom";
+import Login from "./Login";
+import Register from "./Register";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
 import avatarLoader from "../images/profile-avatar-loader.gif";
-import InfoTooltip from './InfoTooltip';
-import successImage from '../images/register-popup-success.svg';
-import * as authorization from '../utils/authorization.js';
-import ProtectedRoute from './ProtectedRoute';
+import InfoTooltip from "./InfoTooltip";
+import successImage from "../images/register-popup-success.svg";
+import * as authorization from "../utils/authorization.js";
+import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
-
-  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
+  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(
+    false
+  );
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
   const [isInfoTooltipOpen, setInfoTooltipOpen] = React.useState(false);
-  
+
   const [selectedCard, setSelectedCard] = React.useState(null);
   const [currentUser, setCurrentUser] = React.useState({
     name: "Please, waiting...",
     about: "Please, waiting...",
-    avatar: `${avatarLoader}`
+    avatar: `${avatarLoader}`,
   });
   const [cards, setCards] = React.useState([]);
   const [loggedIn, setLoggedIn] = React.useState(false);
   const historyLogin = useHistory();
 
-  const [userEmail, setUserEmail] = React.useState('');
+  const [userEmail, setUserEmail] = React.useState("");
 
   React.useEffect(() => {
-    const jwt = localStorage.getItem('token');
-    
+    const jwt = localStorage.getItem("token");
+
     if (jwt) {
-      authorization.handleCheckToken(jwt)
-      .then(res => {
-        if (res) {
-          handleLogin();
-          historyLogin.push('/');
-          setUserEmail(res.data.email);
-        }
-      })
-      .catch(err => console.log(err));
+      authorization
+        .handleCheckToken(jwt)
+        .then((res) => {
+          if (res) {
+            handleLogin();
+            historyLogin.push("/");
+            setUserEmail(res.data.email);
+          }
+        })
+        .catch((err) => console.log(err));
     }
   }, []);
-  
 
   React.useEffect(() => {
     api
@@ -121,7 +122,6 @@ function App() {
   }
 
   function handleInfoTooltipOpen() {
-    
     setInfoTooltipOpen(true);
   }
 
@@ -147,8 +147,6 @@ function App() {
         closeAllPopups();
       })
       .catch((err) => console.log(err));
-
-    
   }
 
   function handleUpdateAvatar(evt) {
@@ -165,8 +163,6 @@ function App() {
         closeAllPopups();
       })
       .catch((err) => console.log(err));
-
-    
   }
 
   function handleAddPlaceSubmit(evt) {
@@ -186,43 +182,43 @@ function App() {
     setAddPlacePopupOpen(false);
     setSelectedCard(null);
     setInfoTooltipOpen(false);
-
   }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
-        
         <Switch>
-
-          <Route exact path='/sign-in'>
-            <Header textButton = "Регистрация" nav = "sign-up" loggedIn = {loggedIn} />
-            <Login onLogin = {handleLogin} />
+          <Route exact path="/sign-in">
+            <Header
+              textButton="Регистрация"
+              nav="sign-up"
+              loggedIn={loggedIn}
+            />
+            <Login onLogin={handleLogin} />
           </Route>
 
-          <Route exact path='/sign-up'>
-            <Header textButton = "Войти" nav = "sign-in" loggedIn = {loggedIn} />
-            <Register onRegister ={handleInfoTooltipOpen} />
+          <Route exact path="/sign-up">
+            <Header textButton="Войти" nav="sign-in" loggedIn={loggedIn} />
+            <Register onRegister={handleInfoTooltipOpen} />
           </Route>
 
-        <ProtectedRoute 
-          path='/' 
-          loggedIn = {loggedIn} 
-          component ={Main}
-          header = {Header}
-          footer = {Footer}
-          userEmail = {userEmail}
-          textButton = "Выйти" 
-          nav = "sign-in" 
-          onEditProfile={handleEditProfileClick}
-          onAddPlace={handleAddPlaceClick}
-          onEditAvatar={handleEditAvatarClick}
-          onCardClick={handleCardClick}
-          cards={cards}
-          onCardLike={handleCardLike}
-          onCardDelete={handleCardDelete}
-        />
-
+          <ProtectedRoute
+            path="/"
+            loggedIn={loggedIn}
+            component={Main}
+            header={Header}
+            footer={Footer}
+            userEmail={userEmail}
+            textButton="Выйти"
+            nav="sign-in"
+            onEditProfile={handleEditProfileClick}
+            onAddPlace={handleAddPlaceClick}
+            onEditAvatar={handleEditAvatarClick}
+            onCardClick={handleCardClick}
+            cards={cards}
+            onCardLike={handleCardLike}
+            onCardDelete={handleCardDelete}
+          />
         </Switch>
       </div>
       <EditProfilePopup
@@ -246,9 +242,13 @@ function App() {
         title="Вы уверены?"
         buttonText="Да"
       />
-      <InfoTooltip text = "Вы успешно зарегистрировались!" imageLink = {successImage} onClose = {closeAllPopups} isOpen = {isInfoTooltipOpen} />
-        </CurrentUserContext.Provider>
-    
+      <InfoTooltip
+        text="Вы успешно зарегистрировались!"
+        imageLink={successImage}
+        onClose={closeAllPopups}
+        isOpen={isInfoTooltipOpen}
+      />
+    </CurrentUserContext.Provider>
   );
 }
 
