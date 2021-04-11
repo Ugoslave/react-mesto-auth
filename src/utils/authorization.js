@@ -51,6 +51,7 @@ export const handleCheckToken = (token) => {
     }
   })
   .then((res) => {
+    
       if (res.ok) { 
         return res.json();
       } else {

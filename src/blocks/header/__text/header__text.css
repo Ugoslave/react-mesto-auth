@@ -1,0 +1,8 @@
+.header__text {
+  margin-left: 25px;
+  transition: opacity .7s ease;
+}
+
+.header__text:hover {
+  opacity: .8;
+}

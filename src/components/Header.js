@@ -1,7 +1,7 @@
 import logo from "../images/header-logo.svg";
 import { useHistory, Link } from 'react-router-dom';
 
-function Header({nav, textButton, loggedIn}) {
+function Header({nav, textButton, loggedIn, userEmail}) {
   const history = useHistory();
 
   function signOut () {
@@ -18,7 +18,7 @@ function Header({nav, textButton, loggedIn}) {
       
         <Link to ={`/${nav}`}>
         <p className="header__button" onClick = {signOut}>
-          {textButton}
+        {userEmail}<span className="header__text">{textButton}</span>
         </p>
         </Link>
         

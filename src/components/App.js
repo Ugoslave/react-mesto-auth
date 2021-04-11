@@ -15,9 +15,7 @@ import AddPlacePopup from "./AddPlacePopup";
 import avatarLoader from "../images/profile-avatar-loader.gif";
 import InfoTooltip from './InfoTooltip';
 import successImage from '../images/register-popup-success.svg';
-import failImage from '../images/register-popup-fail.svg';
 import * as authorization from '../utils/authorization.js';
-
 import ProtectedRoute from './ProtectedRoute';
 
 function App() {
@@ -37,6 +35,8 @@ function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
   const historyLogin = useHistory();
 
+  const [userEmail, setUserEmail] = React.useState('');
+
   React.useEffect(() => {
     const jwt = localStorage.getItem('token');
     
@@ -46,6 +46,7 @@ function App() {
         if (res) {
           handleLogin();
           historyLogin.push('/');
+          setUserEmail(res.data.email);
         }
       })
       .catch(err => console.log(err));
@@ -210,6 +211,7 @@ function App() {
           component ={Main}
           header = {Header}
           footer = {Footer}
+          userEmail = {userEmail}
           textButton = "Выйти" 
           nav = "sign-in" 
           onEditProfile={handleEditProfileClick}
