@@ -41,3 +41,21 @@ export const handleAuthorization = (password, email) => {
   })
   .catch((err) => console.log(err));
 }
+
+export const handleCheckToken = (token) => {
+  return fetch(`${baseUrl}/users/me`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      "Authorization" : `Bearer ${token}`
+    }
+  })
+  .then((res) => {
+      if (res.ok) { 
+        return res.json();
+      } else {
+        console.log('Ошибка');
+      }
+  })
+  .catch((err) => console.log(err));
+}

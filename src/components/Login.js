@@ -23,6 +23,7 @@ function Login({onLogin}) {
           if (res) {
             onLogin();
             history.push('/');
+            localStorage.setItem('token', res.token);
           }
         });
 

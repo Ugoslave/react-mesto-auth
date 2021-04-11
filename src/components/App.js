@@ -6,7 +6,7 @@ import ImagePopup from "./ImagePopup";
 import React from "react";
 import api from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import Login from './Login';
 import Register from './Register';
 import EditProfilePopup from "./EditProfilePopup";
@@ -16,6 +16,7 @@ import avatarLoader from "../images/profile-avatar-loader.gif";
 import InfoTooltip from './InfoTooltip';
 import successImage from '../images/register-popup-success.svg';
 import failImage from '../images/register-popup-fail.svg';
+import * as authorization from '../utils/authorization.js';
 
 import ProtectedRoute from './ProtectedRoute';
 
@@ -34,7 +35,22 @@ function App() {
   });
   const [cards, setCards] = React.useState([]);
   const [loggedIn, setLoggedIn] = React.useState(false);
+  const historyLogin = useHistory();
 
+  React.useEffect(() => {
+    const jwt = localStorage.getItem('token');
+    
+    if (jwt) {
+      authorization.handleCheckToken(jwt)
+      .then(res => {
+        if (res) {
+          handleLogin();
+          historyLogin.push('/');
+        }
+      })
+      .catch(err => console.log(err));
+    }
+  }, []);
   
 
   React.useEffect(() => {
