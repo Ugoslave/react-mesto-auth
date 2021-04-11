@@ -103,9 +103,13 @@ function App() {
     setAddPlacePopupOpen(true);
   }
 
-  function handleInfoTooltipOpen(text, image) {
+  function handleInfoTooltipOpen() {
     
     setInfoTooltipOpen(true);
+  }
+
+  function handleLogin() {
+    setLoggedIn(true);
   }
 
   function handleCardClick(selectedCard) {
@@ -175,7 +179,7 @@ function App() {
         <Switch>
 
           <Route exact path='/sign-in'>
-            <Login />
+            <Login onLogin = {handleLogin} />
           </Route>
 
           <Route exact path='/sign-up'>
