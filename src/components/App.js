@@ -195,12 +195,12 @@ function App() {
         <Switch>
 
           <Route exact path='/sign-in'>
-            <Header />
+            <Header textButton = "Регистрация" nav = "sign-up" loggedIn = {loggedIn} />
             <Login onLogin = {handleLogin} />
           </Route>
 
           <Route exact path='/sign-up'>
-            <Header />
+            <Header textButton = "Войти" nav = "sign-in" loggedIn = {loggedIn} />
             <Register onRegister ={handleInfoTooltipOpen} />
           </Route>
 
@@ -210,6 +210,8 @@ function App() {
           component ={Main}
           header = {Header}
           footer = {Footer}
+          textButton = "Выйти" 
+          nav = "sign-in" 
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
           onEditAvatar={handleEditAvatarClick}

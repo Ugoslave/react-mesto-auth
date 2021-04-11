@@ -1,6 +1,6 @@
 import * as authorization from '../utils/authorization.js';
 import React from "react";
-import {useHistory} from 'react-router-dom';
+import {useHistory, Link} from 'react-router-dom';
 
 function Register({onRegister}) {
   
@@ -63,7 +63,7 @@ function Register({onRegister}) {
         </button>
       </form>
     </div>
-    <p className = "form-container__text">Уже зарегистрированы?<a className = "form-container__link" href="#">Войти</a></p>
+    <p className = "form-container__text">Уже зарегистрированы?<Link to="/sign-in"><span className = "form-container__link">Войти</span></Link></p>
     </>
   )
 }

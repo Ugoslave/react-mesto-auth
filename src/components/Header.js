@@ -1,15 +1,27 @@
 import logo from "../images/header-logo.svg";
-import { Link } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
-function Header({path, textButton}) {
+function Header({nav, textButton, loggedIn}) {
+  const history = useHistory();
+
+  function signOut () {
+    
+    if (loggedIn) {
+      localStorage.removeItem('token');
+      history.push('/sign-in');
+    }
+  }
+
   return (
     <header className="header">
       <img src={logo} alt="Место" className="logo" />
-      <p className="header__button">
-        <Link to ={`/${path}`}>
+      
+        <Link to ={`/${nav}`}>
+        <p className="header__button" onClick = {signOut}>
           {textButton}
+        </p>
         </Link>
-      </p>
+        
     </header>
   );
 }
