@@ -1,6 +1,6 @@
 import {baseUrl} from '../utils/utils';
 
-export function handleRegistration(password, email) {
+export const handleRegistration = (password, email) => {
   return fetch(`${baseUrl}/signup`, {
     method: 'POST',
     headers: {
@@ -11,16 +11,13 @@ export function handleRegistration(password, email) {
       "email": `${email}`
     })
   })
-  .then((response) => {
-    try {
-      if (response.status === 200){
-        return response.json();
+  .then((res) => {
+      if (res.ok) { 
+        return res.json();
+      } else {
+        console.log('Ошибка');
       }
-    } catch(e){
-      return (e)
-    }
   })
-    .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
   .catch((err) => console.log(err));
 
 }

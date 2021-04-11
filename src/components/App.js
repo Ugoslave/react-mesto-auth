@@ -13,9 +13,10 @@ import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
 import avatarLoader from "../images/profile-avatar-loader.gif";
+import InfoTooltip from './InfoTooltip';
 import successImage from '../images/register-popup-success.svg';
 import failImage from '../images/register-popup-fail.svg';
-import InfoTooltip from './InfoTooltip';
+
 import ProtectedRoute from './ProtectedRoute';
 
 function App() {
@@ -23,6 +24,8 @@ function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
+  const [isInfoTooltipOpen, setInfoTooltipOpen] = React.useState(false);
+  
   const [selectedCard, setSelectedCard] = React.useState(null);
   const [currentUser, setCurrentUser] = React.useState({
     name: "Please, waiting...",
@@ -100,6 +103,11 @@ function App() {
     setAddPlacePopupOpen(true);
   }
 
+  function handleInfoTooltipOpen(text, image) {
+    
+    setInfoTooltipOpen(true);
+  }
+
   function handleCardClick(selectedCard) {
     setSelectedCard(selectedCard);
   }
@@ -156,6 +164,8 @@ function App() {
     setEditProfilePopupOpen(false);
     setAddPlacePopupOpen(false);
     setSelectedCard(null);
+    setInfoTooltipOpen(false);
+
   }
 
   return (
@@ -169,7 +179,7 @@ function App() {
           </Route>
 
           <Route exact path='/sign-up'>
-            <Register />
+            <Register onRegister ={handleInfoTooltipOpen} />
           </Route>
 
         <ProtectedRoute 
@@ -210,6 +220,7 @@ function App() {
         title="Вы уверены?"
         buttonText="Да"
       />
+      <InfoTooltip text = "Вы успешно зарегистрировались!" imageLink = {successImage} onClose = {closeAllPopups} isOpen = {isInfoTooltipOpen} />
         </CurrentUserContext.Provider>
     
   );

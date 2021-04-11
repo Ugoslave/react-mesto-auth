@@ -1,8 +1,10 @@
 import closeButton from "../images/popup-closeButton.svg";
 
-function InfoTooltip({text, imageLink, onClose}) {
+function InfoTooltip({text, imageLink, onClose, isOpen}) {
   return (
-    <div className="popup popup_place_register-popup popup_active">
+    <div className={`popup popup_place_register-popup ${
+      isOpen && "popup_active"
+    }`}>
       <div className="popup__container popup__container_place_register-popup">
         <button
           type="button"
