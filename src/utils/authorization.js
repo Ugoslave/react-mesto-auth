@@ -17,8 +17,7 @@ export const handleRegistration = (password, email) => {
       } else {
         console.log("Ошибка");
       }
-    })
-    .catch((err) => console.log(err));
+    });
 };
 
 export const handleAuthorization = (password, email) => {
@@ -38,8 +37,7 @@ export const handleAuthorization = (password, email) => {
       } else {
         console.log("Ошибка");
       }
-    })
-    .catch((err) => console.log(err));
+    });
 };
 
 export const handleCheckToken = (token) => {
@@ -56,6 +54,5 @@ export const handleCheckToken = (token) => {
       } else {
         console.log("Ошибка");
       }
-    })
-    .catch((err) => console.log(err));
+    });
 };

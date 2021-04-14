@@ -1,11 +1,8 @@
-import * as authorization from "../utils/authorization.js";
 import React from "react";
-import { useHistory } from "react-router-dom";
 
 function Login({ onLogin }) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const history = useHistory();
 
   function handleEmailChange(evt) {
     setEmail(evt.target.value);
@@ -15,18 +12,16 @@ function Login({ onLogin }) {
     setPassword(evt.target.value);
   }
 
-  function handleLoginSubmit(evt) {
+  function handleSubmit(evt) {
     evt.preventDefault();
-    authorization.handleAuthorization(password, email).then((res) => {
-      if (res) {
-        onLogin();
-        history.push("/");
-        localStorage.setItem("token", res.token);
-      }
+    onLogin({
+      password: password, 
+      email: email
     });
 
-    setEmail("");
-    setPassword("");
+    setEmail('');
+    setPassword('');
+
   }
 
   return (
@@ -34,7 +29,7 @@ function Login({ onLogin }) {
       <h2 className="form-container__title">Вход</h2>
       <form
         name="auth"
-        onSubmit={handleLoginSubmit}
+        onSubmit={handleSubmit}
         className="form"
         noValidate
       >

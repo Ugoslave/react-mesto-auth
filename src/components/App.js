@@ -15,13 +15,12 @@ import AddPlacePopup from "./AddPlacePopup";
 import avatarLoader from "../images/profile-avatar-loader.gif";
 import InfoTooltip from "./InfoTooltip";
 import successImage from "../images/register-popup-success.svg";
+import failImage from "../images/register-popup-fail.svg";
 import * as authorization from "../utils/authorization.js";
 import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
-  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(
-    false
-  );
+  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
   const [isInfoTooltipOpen, setInfoTooltipOpen] = React.useState(false);
@@ -37,10 +36,12 @@ function App() {
   const historyLogin = useHistory();
 
   const [userEmail, setUserEmail] = React.useState("");
+  const [successRegister, setSuccessRegister] = React.useState(false);
+  
 
   React.useEffect(() => {
     const jwt = localStorage.getItem("token");
-
+    
     if (jwt) {
       authorization
         .handleCheckToken(jwt)
@@ -53,7 +54,7 @@ function App() {
         })
         .catch((err) => console.log(err));
     }
-  }, []);
+  }, [userEmail]);
 
   React.useEffect(() => {
     api
@@ -68,6 +69,37 @@ function App() {
       })
       .catch((err) => console.log(err));
   }, []);
+
+
+  function signOut() {
+    if (loggedIn) {
+      localStorage.removeItem("token");
+      historyLogin.push("/sign-in");
+    }
+  }
+
+  function handleLoginSubmit(evt) {
+    authorization.handleAuthorization(evt.password, evt.email).then((res) => {
+      if (res) {
+        handleLogin();
+        historyLogin.push("/");
+        localStorage.setItem("token", res.token);
+      }
+    })
+    .catch((err) => console.log(err));
+  }
+
+  function handleRegisterSubmit(evt) {
+    authorization.handleRegistration(evt.password, evt.email).then((res) => {
+      if (res) {
+        historyLogin.push("/sign-in");
+        handleInfoTooltipOpen(true);
+      } else {
+        handleInfoTooltipOpen(false);
+      }
+    })
+    .catch((err) => console.log(err));
+  }
 
   function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i._id === currentUser.id);
@@ -121,8 +153,9 @@ function App() {
     setAddPlacePopupOpen(true);
   }
 
-  function handleInfoTooltipOpen() {
+  function handleInfoTooltipOpen(mean) {
     setInfoTooltipOpen(true);
+    setSuccessRegister(mean);
   }
 
   function handleLogin() {
@@ -170,10 +203,9 @@ function App() {
       .addCard(evt)
       .then((res) => {
         setCards([res, ...cards]);
+        closeAllPopups();
       })
       .catch((err) => console.log(err));
-
-    closeAllPopups();
   }
 
   function closeAllPopups() {
@@ -194,12 +226,12 @@ function App() {
               nav="sign-up"
               loggedIn={loggedIn}
             />
-            <Login onLogin={handleLogin} />
+            <Login onLogin={handleLoginSubmit} />
           </Route>
 
           <Route exact path="/sign-up">
             <Header textButton="Войти" nav="sign-in" loggedIn={loggedIn} />
-            <Register onRegister={handleInfoTooltipOpen} />
+            <Register onRegister={handleRegisterSubmit} />
           </Route>
 
           <ProtectedRoute
@@ -211,6 +243,7 @@ function App() {
             userEmail={userEmail}
             textButton="Выйти"
             nav="sign-in"
+            onSignOut = {signOut} 
             onEditProfile={handleEditProfileClick}
             onAddPlace={handleAddPlaceClick}
             onEditAvatar={handleEditAvatarClick}
@@ -243,8 +276,8 @@ function App() {
         buttonText="Да"
       />
       <InfoTooltip
-        text="Вы успешно зарегистрировались!"
-        imageLink={successImage}
+        text={successRegister ? 'Вы успешно зарегистрировались!' : 'Что-то пошло не так! Попробуйте ещё раз.'}
+        imageLink={successRegister ? successImage : failImage}
         onClose={closeAllPopups}
         isOpen={isInfoTooltipOpen}
       />

@@ -1,11 +1,9 @@
-import * as authorization from "../utils/authorization.js";
 import React from "react";
-import { useHistory, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Register({ onRegister }) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const history = useHistory();
 
   function handleEmailChange(evt) {
     setEmail(evt.target.value);
@@ -17,11 +15,10 @@ function Register({ onRegister }) {
 
   function handleRegisterSubmit(evt) {
     evt.preventDefault();
-    authorization.handleRegistration(password, email).then((res) => {
-      if (res) {
-        history.push("/sign-in");
-        onRegister();
-      }
+    
+    onRegister({
+      password: password, 
+      email: email
     });
 
     setEmail("");
