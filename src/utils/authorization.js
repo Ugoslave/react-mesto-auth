@@ -15,7 +15,7 @@ export const handleRegistration = (password, email) => {
       if (res.ok) {
         return res.json();
       } else {
-        console.log("Ошибка");
+        return Promise.reject(`ОШИБКА: ${res.status}`);
       }
     });
 };
@@ -35,7 +35,7 @@ export const handleAuthorization = (password, email) => {
       if (res.ok) {
         return res.json();
       } else {
-        console.log("Ошибка");
+        return Promise.reject(`ОШИБКА: ${res.status}`);
       }
     });
 };
@@ -52,7 +52,7 @@ export const handleCheckToken = (token) => {
       if (res.ok) {
         return res.json();
       } else {
-        console.log("Ошибка");
+        return Promise.reject(`ОШИБКА: ${res.status}`);
       }
     });
 };

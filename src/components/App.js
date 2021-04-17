@@ -37,11 +37,10 @@ function App() {
 
   const [userEmail, setUserEmail] = React.useState("");
   const [successRegister, setSuccessRegister] = React.useState(false);
-  
 
   React.useEffect(() => {
     const jwt = localStorage.getItem("token");
-    
+
     if (jwt) {
       authorization
         .handleCheckToken(jwt)
@@ -54,7 +53,7 @@ function App() {
         })
         .catch((err) => console.log(err));
     }
-  }, [userEmail]);
+  }, []);
 
   React.useEffect(() => {
     api
@@ -84,6 +83,7 @@ function App() {
         handleLogin();
         historyLogin.push("/");
         localStorage.setItem("token", res.token);
+        setUserEmail(evt.email);
       }
     })
     .catch((err) => console.log(err));
