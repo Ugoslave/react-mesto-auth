@@ -95,7 +95,7 @@ function App() {
         historyLogin.push("/sign-in");
         handleInfoTooltipOpen(true);
       } else {
-        handleInfoTooltipOpen(false);
+        handleInfoTooltipOpen(false); 
       }
     })
     .catch((err) => console.log(err));
