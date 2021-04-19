@@ -14,6 +14,8 @@ export const handleRegistration = (password, email) => {
     .then((res) => {
       if (res.ok) {
         return res.json();
+      } else {
+        return Promise.reject(`ОШИБКА: ${res.status}`);
       }
     });
 };

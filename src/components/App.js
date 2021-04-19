@@ -94,11 +94,13 @@ function App() {
       if (res) {
         historyLogin.push("/sign-in");
         handleInfoTooltipOpen(true);
-      } else {
-        handleInfoTooltipOpen(false); 
       }
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err);
+      handleInfoTooltipOpen(false);
+      }
+    );
   }
 
   function handleCardLike(card) {
