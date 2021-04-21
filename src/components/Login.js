@@ -15,24 +15,18 @@ function Login({ onLogin }) {
   function handleSubmit(evt) {
     evt.preventDefault();
     onLogin({
-      password: password, 
-      email: email
+      password: password,
+      email: email,
     });
 
-    setEmail('');
-    setPassword('');
-
+    setEmail("");
+    setPassword("");
   }
 
   return (
     <div className="form-container">
       <h2 className="form-container__title">Вход</h2>
-      <form
-        name="auth"
-        onSubmit={handleSubmit}
-        className="form"
-        noValidate
-      >
+      <form name="auth" onSubmit={handleSubmit} className="form" noValidate>
         <input
           required
           type="email"

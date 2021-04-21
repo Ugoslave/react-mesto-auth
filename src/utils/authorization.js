@@ -10,14 +10,13 @@ export const handleRegistration = (password, email) => {
       password: `${password}`,
       email: `${email}`,
     }),
-  })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        return Promise.reject(`ОШИБКА: ${res.status}`);
-      }
-    });
+  }).then((res) => {
+    if (res.ok) {
+      return res.json();
+    } else {
+      return Promise.reject(`ОШИБКА: ${res.status}`);
+    }
+  });
 };
 
 export const handleAuthorization = (password, email) => {
@@ -30,14 +29,13 @@ export const handleAuthorization = (password, email) => {
       password: `${password}`,
       email: `${email}`,
     }),
-  })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        return Promise.reject(`ОШИБКА: ${res.status}`);
-      }
-    });
+  }).then((res) => {
+    if (res.ok) {
+      return res.json();
+    } else {
+      return Promise.reject(`ОШИБКА: ${res.status}`);
+    }
+  });
 };
 
 export const handleCheckToken = (token) => {
@@ -47,12 +45,11 @@ export const handleCheckToken = (token) => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        return Promise.reject(`ОШИБКА: ${res.status}`);
-      }
-    });
+  }).then((res) => {
+    if (res.ok) {
+      return res.json();
+    } else {
+      return Promise.reject(`ОШИБКА: ${res.status}`);
+    }
+  });
 };

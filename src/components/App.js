@@ -20,12 +20,10 @@ import * as authorization from "../utils/authorization.js";
 import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
-  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(
-    false
-  );
-  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
-  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
-  const [isInfoTooltipOpen, setInfoTooltipOpen] = React.useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = React.useState(false);
 
   const [selectedCard, setSelectedCard] = React.useState(null);
   const [currentUser, setCurrentUser] = React.useState({
@@ -148,19 +146,19 @@ function App() {
   }, []);
 
   function handleEditAvatarClick() {
-    setEditAvatarPopupOpen(true);
+    setIsEditAvatarPopupOpen(true);
   }
 
   function handleEditProfileClick() {
-    setEditProfilePopupOpen(true);
+    setIsEditProfilePopupOpen(true);
   }
 
   function handleAddPlaceClick() {
-    setAddPlacePopupOpen(true);
+    setIsAddPlacePopupOpen(true);
   }
 
   function handleInfoTooltipOpen(mean) {
-    setInfoTooltipOpen(true);
+    setIsInfoTooltipOpen(true);
     setSuccessRegister(mean);
   }
 
@@ -215,11 +213,11 @@ function App() {
   }
 
   function closeAllPopups() {
-    setEditAvatarPopupOpen(false);
-    setEditProfilePopupOpen(false);
-    setAddPlacePopupOpen(false);
+    setIsEditAvatarPopupOpen(false);
+    setIsEditProfilePopupOpen(false);
+    setIsAddPlacePopupOpen(false);
     setSelectedCard(null);
-    setInfoTooltipOpen(false);
+    setIsInfoTooltipOpen(false);
   }
 
   return (

@@ -15,10 +15,10 @@ function Register({ onRegister }) {
 
   function handleRegisterSubmit(evt) {
     evt.preventDefault();
-    
+
     onRegister({
-      password: password, 
-      email: email
+      password: password,
+      email: email,
     });
 
     setEmail("");
