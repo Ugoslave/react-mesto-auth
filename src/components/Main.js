@@ -1,5 +1,6 @@
 import React from "react";
 import Card from "./Card";
+import Header from "./Header";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function Main({
@@ -10,11 +11,19 @@ function Main({
   cards,
   onCardLike,
   onCardDelete,
+  userEmail,
+  onSignOut,
 }) {
   const user = React.useContext(CurrentUserContext);
 
   return (
     <>
+      <Header
+        textButton="Выйти"
+        nav="sign-in"
+        userEmail={userEmail}
+        onSignOut={onSignOut}
+      />
       <section className="profile">
         <div className="profile__info">
           <div onClick={onEditAvatar} className="profile__avatar-box">

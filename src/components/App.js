@@ -20,7 +20,9 @@ import * as authorization from "../utils/authorization.js";
 import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
-  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
+  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(
+    false
+  );
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
   const [isInfoTooltipOpen, setInfoTooltipOpen] = React.useState(false);
@@ -69,7 +71,6 @@ function App() {
       .catch((err) => console.log(err));
   }, []);
 
-
   function signOut() {
     if (loggedIn) {
       localStorage.removeItem("token");
@@ -78,29 +79,32 @@ function App() {
   }
 
   function handleLoginSubmit(evt) {
-    authorization.handleAuthorization(evt.password, evt.email).then((res) => {
-      if (res) {
-        handleLogin();
-        historyLogin.push("/");
-        localStorage.setItem("token", res.token);
-        setUserEmail(evt.email);
-      }
-    })
-    .catch((err) => console.log(err));
+    authorization
+      .handleAuthorization(evt.password, evt.email)
+      .then((res) => {
+        if (res) {
+          handleLogin();
+          historyLogin.push("/");
+          localStorage.setItem("token", res.token);
+          setUserEmail(evt.email);
+        }
+      })
+      .catch((err) => console.log(err));
   }
 
   function handleRegisterSubmit(evt) {
-    authorization.handleRegistration(evt.password, evt.email).then((res) => {
-      if (res) {
-        historyLogin.push("/sign-in");
-        handleInfoTooltipOpen(true);
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-      handleInfoTooltipOpen(false);
-      }
-    );
+    authorization
+      .handleRegistration(evt.password, evt.email)
+      .then((res) => {
+        if (res) {
+          historyLogin.push("/sign-in");
+          handleInfoTooltipOpen(true);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        handleInfoTooltipOpen(false);
+      });
   }
 
   function handleCardLike(card) {
@@ -223,16 +227,12 @@ function App() {
       <div className="page">
         <Switch>
           <Route exact path="/sign-in">
-            <Header
-              textButton="Регистрация"
-              nav="sign-up"
-              loggedIn={loggedIn}
-            />
+            <Header textButton="Регистрация" nav="sign-up" />
             <Login onLogin={handleLoginSubmit} />
           </Route>
 
           <Route exact path="/sign-up">
-            <Header textButton="Войти" nav="sign-in" loggedIn={loggedIn} />
+            <Header textButton="Войти" nav="sign-in" />
             <Register onRegister={handleRegisterSubmit} />
           </Route>
 
@@ -240,12 +240,8 @@ function App() {
             path="/"
             loggedIn={loggedIn}
             component={Main}
-            header={Header}
-            footer={Footer}
             userEmail={userEmail}
-            textButton="Выйти"
-            nav="sign-in"
-            onSignOut = {signOut} 
+            onSignOut={signOut}
             onEditProfile={handleEditProfileClick}
             onAddPlace={handleAddPlaceClick}
             onEditAvatar={handleEditAvatarClick}
@@ -255,6 +251,7 @@ function App() {
             onCardDelete={handleCardDelete}
           />
         </Switch>
+        <Footer />
       </div>
       <EditProfilePopup
         isOpen={isEditProfilePopupOpen}
@@ -278,7 +275,11 @@ function App() {
         buttonText="Да"
       />
       <InfoTooltip
-        text={successRegister ? 'Вы успешно зарегистрировались!' : 'Что-то пошло не так! Попробуйте ещё раз.'}
+        text={
+          successRegister
+            ? "Вы успешно зарегистрировались!"
+            : "Что-то пошло не так! Попробуйте ещё раз."
+        }
         imageLink={successRegister ? successImage : failImage}
         onClose={closeAllPopups}
         isOpen={isInfoTooltipOpen}
